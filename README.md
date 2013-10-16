@@ -75,7 +75,7 @@ can be downloaded by the build pack (see the URIs in `compile`).
 
     # Build and install Apache.
     pushd $httpd_dirname
-    ./configure --prefix=/app/apache --enable-rewrite --with-included-apr
+    ./configure --prefix=/app/apache --enable-rewrite --enable-deflate --enable-expires --with-included-apr
     make -s
     make install -s
     popd
@@ -101,7 +101,8 @@ can be downloaded by the build pack (see the URIs in `compile`).
     --with-mysql --with-pdo-mysql --with-pgsql --with-pdo-pgsql         \
     --with-iconv --with-gd --with-curl=/usr/lib                         \
     --with-config-file-path=/app/php --enable-soap=shared               \
-    --with-openssl --with-mcrypt=/app/vendor/mcrypt --enable-sockets
+    --with-openssl --with-mcrypt=/app/vendor/mcrypt --enable-sockets	\
+	--enable-mbstring
     make -s
     make install -s
     popd
