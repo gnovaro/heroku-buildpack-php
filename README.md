@@ -17,7 +17,7 @@ Pre-compiling binaries
 
 On a Heroku Dyno, one can run the following as executable text.  After
 running it, `/app` will contain, among other entities,
-`apache-2.2.25-1.tar.gz`, `php-5.3.27-1.tar.gz`, and
+`apache-2.2.25-1.tar.gz`, `php-5.4.21.tar.bz2`, and
 `mcrypt-2.5.8-1.tar.gz` which should be uploaded to a location that
 can be downloaded by the build pack (see the URIs in `compile`).
 
@@ -81,14 +81,14 @@ can be downloaded by the build pack (see the URIs in `compile`).
     popd
 
     # Take care of vendoring PHP.
-    php_version=5.3.27
+    php_version=5.4.21
     php_dirname=php-$php_version
     php_archive_name=$php_dirname.tar.bz2
 
     # Download PHP if necessary.
     if [ ! -f $php_archive_name ]
     then
-        curl -Lo $php_archive_name http://us1.php.net/get/php-5.3.27.tar.bz2/from/www.php.net/mirror
+        curl -Lo $php_archive_name http://us1.php.net/get/$php_archive_name/from/www.php.net/mirror
     fi
 
     # Clean and extract PHP.
@@ -99,10 +99,10 @@ can be downloaded by the build pack (see the URIs in `compile`).
     pushd $php_dirname
     ./configure --prefix=/app/php --with-apxs2=/app/apache/bin/apxs     \
     --with-mysql --with-pdo-mysql --with-pgsql --with-pdo-pgsql         \
-    --with-iconv --with-gd --with-curl=/usr/lib                         \
+    --with-iconv --with-gd --with-curl=/usr/lib --enable-mbstring       \
     --with-config-file-path=/app/php --enable-soap=shared               \
     --with-openssl --with-mcrypt=/app/vendor/mcrypt --enable-sockets	\
-	--enable-mbstring
+	
     make -s
     make install -s
     popd
