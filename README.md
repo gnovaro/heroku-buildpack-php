@@ -29,7 +29,7 @@ can be downloaded by the build pack (see the URIs in `compile`).
     #
     # Affixed to all vendored binary output to represent changes to the
     # compilation environment without a change to the upstream version,
-    # e.g. PHP 5.3.27 without, and then subsequently with, libmcrypt.
+    # e.g. PHP 5.4.21 without, and then subsequently with, libmcrypt.
     heroku_rev='-2'
 
     # Clear /app directory
@@ -101,7 +101,7 @@ can be downloaded by the build pack (see the URIs in `compile`).
     --with-mysql --with-pdo-mysql --with-pgsql --with-pdo-pgsql         \
     --with-iconv --with-gd --with-curl=/usr/lib --enable-mbstring       \
     --with-config-file-path=/app/php --enable-soap=shared               \
-    --with-openssl --with-mcrypt=/app/vendor/mcrypt --enable-sockets	\
+    --with-openssl --with-mcrypt=/app/vendor/mcrypt --enable-sockets
 	
     make -s
     make install -s
